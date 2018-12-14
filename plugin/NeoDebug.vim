@@ -347,12 +347,6 @@ endfunction
 
 let s:neodbg_init_flag = 1
 function! s:NeoDebugStart(cmd)
-
-    " Initialize
-    let s:completers = []
-    let s:breakpoints = {}
-    let s:neodbg_cmd_historys = [" "]
-
     let s:startwin = win_getid(winnr())
     let s:startsigncolumn = &signcolumn
 
@@ -486,6 +480,10 @@ function! s:NeoDebugEnd(job, status)
     call win_gotoid(s:startwin)
     let &signcolumn = s:startsigncolumn
     call NeoDebugRestoreCommandsShotcut()
+    " Cleanup
+    let s:completers = []
+    let s:breakpoints = {}
+    let s:neodbg_cmd_historys = [" "]
 
     call win_gotoid(curwinid)
     if s:save_columns > 0
