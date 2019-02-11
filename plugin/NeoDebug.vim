@@ -315,7 +315,7 @@ endfunction
 
 function! s:CreateTerminalWindows()
   " Open a terminal window without a job, to run the debugged program in.
-	let s:vertical = 1
+	let s:vertical = 0
   let s:ptybuf = term_start('NONE', {
         \ 'term_name': 'debugged program',
         \ 'vertical': s:vertical,
@@ -337,7 +337,6 @@ endfunction
 let s:neodbg_init_flag = 1
 function! s:NeoDebugStart(cmd)
 
-		let pty = s:CreateTerminalWindows()
 
     let s:startwin = win_getid(winnr())
     let s:startsigncolumn = &signcolumn
@@ -352,6 +351,7 @@ function! s:NeoDebugStart(cmd)
     else
         let vertical = 0
     endif
+    let pty = s:CreateTerminalWindows()
 
     let cmd = [g:neodbg_debugger, '-quiet','-q', '-f', '--interpreter=mi2','-tty', pty, a:cmd]
     " Create a hidden terminal window to communicate with gdb
