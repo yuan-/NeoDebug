@@ -313,8 +313,32 @@ function! NeoDebugStop(cmd)
     endif
 endfunction
 
+function! s:CreateTerminalWindows()
+  " Open a terminal window without a job, to run the debugged program in.
+	let s:vertical = 1
+  let s:ptybuf = term_start('NONE', {
+        \ 'term_name': 'debugged program',
+        \ 'vertical': s:vertical,
+        \ })
+  if s:ptybuf == 0
+    echoerr 'Failed to open the program terminal window'
+    return
+  endif
+  let pty = job_info(term_getjob(s:ptybuf))['tty_out']
+  let s:ptywin = win_getid(winnr())
+  if s:vertical
+    " Assuming the source code window will get a signcolumn, use two more
+    " columns for that, thus one less for the terminal window.
+    exe (&columns / 2 - 1) . "wincmd |"
+  endif
+	return pty
+endfunction
+
 let s:neodbg_init_flag = 1
 function! s:NeoDebugStart(cmd)
+
+		let pty = s:CreateTerminalWindows()
+
     let s:startwin = win_getid(winnr())
     let s:startsigncolumn = &signcolumn
 
@@ -329,7 +353,7 @@ function! s:NeoDebugStart(cmd)
         let vertical = 0
     endif
 
-    let cmd = [g:neodbg_debugger, '-quiet','-q', '-f', '--interpreter=mi2', a:cmd]
+    let cmd = [g:neodbg_debugger, '-quiet','-q', '-f', '--interpreter=mi2','-tty', pty, a:cmd]
     " Create a hidden terminal window to communicate with gdb
     if has('nvim')
         let opts = {
