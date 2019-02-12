@@ -355,7 +355,6 @@ function! s:NeoDebugStart(cmd)
     else
         let vertical = 0
     endif
-    let pty = s:CreateTerminalWindows()
 
     let cmd = [g:neodbg_debugger, '-quiet','-q', '-f', '--interpreter=mi2','-tty', pty, a:cmd]
     " Create a hidden terminal window to communicate with gdb
