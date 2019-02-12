@@ -311,6 +311,7 @@ function! NeoDebugStop(cmd)
         call jobstop(s:nvim_commjob)
     else
         call job_stop(s:commjob)
+        call job_stop(s:term_job)
     endif
 endfunction
 
