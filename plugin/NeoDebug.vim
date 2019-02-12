@@ -473,6 +473,7 @@ function! s:NeoDebugEnd(job, status)
     exe 'bwipe! ' . bufnr(g:neodbg_expressions_name)
     exe 'bwipe! ' . bufnr(g:neodbg_watchpoints_name)
     exe 'bwipe! ' . bufnr(g:neodbg_console_name)
+    exe 'bwipe! ' . bufnr(g:neodbg_terminal_name)
 
     let curwinid = win_getid(winnr())
 
