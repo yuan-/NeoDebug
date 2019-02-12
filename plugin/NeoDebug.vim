@@ -334,7 +334,7 @@ function! s:CreateTerminalWindows()
     " columns for that, thus one less for the terminal window.
     exe (&columns / 2 - 1) . "wincmd |"
   endif
-	return pty
+  return pty
 endfunction
 
 let s:neodbg_init_flag = 1
