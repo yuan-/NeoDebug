@@ -338,6 +338,7 @@ function! s:CreateTerminalWindows()
     " columns for that, thus one less for the terminal window.
     exe (&columns / 2 - 1) . "wincmd |"
   endif
+  exec g:neodbg_terminal_height . 'wincmd _'
   exec 'wincmd x'
   return pty
 endfunction
