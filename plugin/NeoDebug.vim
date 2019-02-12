@@ -356,7 +356,7 @@ function! s:NeoDebugStart(cmd)
         let vertical = 0
     endif
 
-    let cmd = [g:neodbg_debugger, '-quiet','-q', '-f', '--interpreter=mi2','-tty', pty, a:cmd]
+    let cmd = [g:neodbg_debugger, '-quiet','-q', '-f', '--interpreter=mi2','-tty', s:pty, a:cmd]
     " Create a hidden terminal window to communicate with gdb
     if has('nvim')
         let opts = {
