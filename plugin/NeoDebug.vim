@@ -315,6 +315,7 @@ function! NeoDebugStop(cmd)
     else
         call job_stop(s:commjob)
         call job_stop(s:term_job)
+        exec s:ptybuf . ' wincmd q'
     endif
 endfunction
 
