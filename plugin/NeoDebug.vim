@@ -94,6 +94,9 @@ if !exists('g:neodbg_openwatchs_default')
     let g:neodbg_openwatchs_default    = 0
 endif
 
+let g:neodbg_terminal_name = "__DebugTermial__"
+let g:neodbg_terminal_height = 8
+
 let g:neodbg_console_name = "__DebugConsole__"
 let g:neodbg_console_height = 15
 let g:neodbg_prompt = '(gdb) '
