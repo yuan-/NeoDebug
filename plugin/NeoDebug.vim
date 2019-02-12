@@ -325,6 +325,7 @@ function! s:CreateTerminalWindows()
     echoerr 'Failed to open the program terminal window'
     return
   endif
+  let s:term_job = term_getjob(s:ptybuf)
   let pty = job_info(term_getjob(s:ptybuf))['tty_out']
   let s:ptywin = win_getid(winnr())
   if s:vertical
