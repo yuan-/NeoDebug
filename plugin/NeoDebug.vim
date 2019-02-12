@@ -323,7 +323,7 @@ function! s:CreateTerminalWindows()
   " Open a terminal window without a job, to run the debugged program in.
 	let s:vertical = 0
   let s:ptybuf = term_start('NONE', {
-        \ 'term_name': 'debugged program',
+        \ 'term_name': g:neodbg_terminal_name,
         \ 'vertical': s:vertical,
         \ })
   if s:ptybuf == 0
