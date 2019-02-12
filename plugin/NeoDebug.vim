@@ -334,6 +334,7 @@ function! s:CreateTerminalWindows()
     " columns for that, thus one less for the terminal window.
     exe (&columns / 2 - 1) . "wincmd |"
   endif
+  exec 'wincmd x'
   return pty
 endfunction
 
