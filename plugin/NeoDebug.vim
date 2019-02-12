@@ -177,6 +177,7 @@ function! NeoDebug(cmd, ...)  " [mode]
     if s:neodbg_running == 0
         let s:neodbg_port= 30000 + reltime()[1] % 10000
 
+        let s:pty = s:CreateTerminalWindows()
         call neodebug#OpenLocals()
         let g:neodbg_locals_win = win_getid(winnr())
 
